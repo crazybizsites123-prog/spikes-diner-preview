@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100b09">
+<meta name="description" content="Spike's Diner — Cajun-American comfort food in the French Quarter.">
+<title>Spike's Diner | Cajun-American Diner</title>
+
+<style>
+:root{
+  --bg:#100b09;--surface:#1a110e;--surface2:#241612;
+  --cream:#fff4dc;--muted:#d6c5a9;--accent:#f7b83f;--accent2:#d85b2b;
+  --line:rgba(255,244,220,.14);--radius:28px;
+  --display:Georgia,"Times New Roman",serif;
+  --body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --shadow:0 24px 70px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:var(--body);line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img{display:block;width:100%;object-fit:cover}
+.site{overflow:hidden}
+header{
+  position:fixed;inset:0 0 auto;z-index:100;
+  background:rgba(16,11,9,.76);backdrop-filter:blur(16px);
+  border-bottom:1px solid transparent;transition:.3s;
+}
+header.scrolled{border-color:var(--line);background:rgba(16,11,9,.94)}
+.nav{max-width:1180px;margin:auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font:700 1.55rem/1 var(--display);letter-spacing:.02em}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:28px;align-items:center;font-size:.9rem}
+.navlinks a{opacity:.82;transition:.25s}
+.navlinks a:hover{opacity:1;color:var(--accent)}
+.navcta{background:var(--accent);color:#170f09;padding:11px 18px;border-radius:999px;font-weight:800}
+.menu-btn{display:none;width:48px;height:48px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--cream);font-size:1.25rem}
+.mobile-menu{display:none;border-top:1px solid var(--line);padding:12px 24px 20px}
+.mobile-menu a{display:block;padding:13px 0;border-bottom:1px solid var(--line)}
+
+.hero{min-height:100svh;display:grid;place-items:end;position:relative;padding:140px 24px 70px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{height:100%;filter:saturate(1.08);animation:heroZoom 14s ease-in-out infinite alternate}
+.hero-bg:after{content:"";position:absolute;inset:0;background:
+ linear-gradient(180deg,rgba(16,11,9,.2),rgba(16,11,9,.15) 35%,rgba(16,11,9,.94) 96%),
+ linear-gradient(90deg,rgba(16,11,9,.62),transparent 72%)}
+.hero-content{position:relative;z-index:2;width:min(1180px,100%);margin:auto}
+.eyebrow{display:flex;align-items:center;gap:10px;color:var(--accent);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:.78rem}
+.eyebrow:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 7px rgba(247,184,63,.12)}
+h1{font:500 clamp(4rem,12vw,8.5rem)/.88 var(--display);letter-spacing:-.045em;max-width:850px;margin:24px 0}
+h1 em{color:var(--accent);font-style:normal}
+.hero-copy{max-width:650px;font-size:clamp(1rem,2vw,1.2rem);color:#f3e5cd}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:999px;border:1px solid var(--line);font-weight:850;transition:.3s;min-height:52px}
+.btn.primary{background:var(--accent);color:#170f09;border-color:var(--accent)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.22)}
+.btn.secondary{background:rgba(255,255,255,.04);backdrop-filter:blur(10px)}
+
+main{position:relative}
+.section{max-width:1180px;margin:auto;padding:110px 24px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:38px}
+.kicker{color:var(--accent);font-size:.75rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+h2{font:500 clamp(2.7rem,7vw,5.8rem)/.92 var(--display);letter-spacing:-.04em;margin:10px 0 0}
+.lead{max-width:520px;color:var(--muted)}
+
+.story{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:stretch}
+.story img{height:100%;min-height:560px;border-radius:var(--radius)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(28px,5vw,62px);display:flex;flex-direction:column;justify-content:center}
+.panel p{color:var(--muted);font-size:1.05rem}
+.signature{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);color:var(--accent);font-weight:800}
+
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.dish{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;grid-template-columns:1fr auto;gap:8px;transition:.3s}
+.dish:hover{transform:translateY(-5px);background:var(--surface2);border-color:rgba(247,184,63,.45)}
+.dish h3{margin:0;font:600 1.45rem var(--display)}
+.dish .price{color:var(--accent);font-weight:900}
+.dish p{grid-column:1/-1;margin:0;color:var(--muted);font-size:.92rem}
+
+.gallery{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
+.gallery .big{grid-row:span 2}
+.gallery figure{margin:0;position:relative;overflow:hidden;border-radius:var(--radius);min-height:280px;cursor:zoom-in;background:var(--surface)}
+.gallery img{height:100%;min-height:280px;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.gallery figure:hover img{transform:scale(1.055)}
+.gallery figcaption{position:absolute;left:16px;bottom:16px;background:rgba(16,11,9,.7);backdrop-filter:blur(10px);padding:8px 12px;border-radius:999px;font-size:.75rem}
+
+.badge-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.badge{border:1px solid var(--line);border-radius:20px;padding:20px;background:rgba(255,255,255,.025)}
+.badge strong{display:block;font-size:1.15rem}
+.badge span{color:var(--muted);font-size:.86rem}
+
+.signature-moment{position:relative;min-height:360px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(135deg,#2a1710,#120b09);display:grid;place-items:center;text-align:center;border:1px solid var(--line)}
+.signature-moment:before{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(247,184,63,.3);border-radius:50%;animation:spin 18s linear infinite}
+.signature-moment:after{content:"";position:absolute;width:180px;height:180px;border:1px dashed rgba(247,184,63,.25);border-radius:50%;animation:spin 12s linear infinite reverse}
+.mascot{position:relative;z-index:2;font-size:5rem;filter:drop-shadow(0 15px 25px rgba(0,0,0,.35));animation:bob 3s ease-in-out infinite}
+.signature-moment h2{position:relative;z-index:2;font-size:clamp(2.3rem,6vw,4.5rem)}
+
+.cta{padding:90px 24px}
+.cta-card{max-width:1180px;margin:auto;padding:clamp(34px,7vw,80px);border-radius:36px;background:
+ radial-gradient(circle at 80% 20%,rgba(247,184,63,.18),transparent 32%),
+ linear-gradient(135deg,#2a1710,#17100d);border:1px solid var(--line);box-shadow:var(--shadow)}
+.cta-card h2{max-width:800px}
+.cta-card p{color:var(--muted);max-width:620px}
+
+footer{border-top:1px solid var(--line);padding:45px 24px 110px}
+.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:30px}
+.footer-inner p{color:var(--muted);max-width:480px}
+
+.sticky-actions{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:90;display:flex;gap:5px;padding:5px;background:rgba(16,11,9,.88);border:1px solid var(--line);border-radius:999px;backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.sticky-actions a{padding:10px 15px;border-radius:999px;font-size:.76rem;font-weight:850}
+.sticky-actions a:first-child{background:var(--accent);color:#170f09}
+
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.92);display:none;place-items:center;padding:20px}
+.lightbox.open{display:grid}
+.lightbox img{max-height:90vh;max-width:95vw;width:auto;border-radius:18px}
+.lightbox button{position:absolute;right:18px;top:18px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#18110e;color:white;font-size:1.4rem}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(20px);transition:.7s}
+.stagger.visible>*{opacity:1;transform:none}
+.stagger.visible>*:nth-child(2){transition-delay:.08s}
+.stagger.visible>*:nth-child(3){transition-delay:.16s}
+.stagger.visible>*:nth-child(4){transition-delay:.24s}
+.stagger.visible>*:nth-child(5){transition-delay:.32s}
+.stagger.visible>*:nth-child(6){transition-delay:.4s}
+
+@keyframes heroZoom{to{transform:scale(1.055)}}
+@keyframes bob{50%{transform:translateY(-10px) rotate(2deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:760px){
+  .navlinks,.navcta{display:none}.menu-btn{display:block}
+  .mobile-menu.open{display:block}
+  .hero{padding:130px 24px 58px}
+  h1{font-size:clamp(3.7rem,18vw,6rem)}
+  .section{padding:78px 20px}
+  .section-head{display:block}
+  .story,.gallery{grid-template-columns:1fr}
+  .story img{min-height:430px}
+  .gallery .big{grid-row:auto}
+  .gallery figure{min-height:250px}
+  .menu-grid{grid-template-columns:1fr}
+  .badge-row{grid-template-columns:1fr}
+  .footer-inner{display:block}
+  .sticky-actions{width:calc(100% - 24px);justify-content:space-between}
+  .sticky-actions a{flex:1;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+
+<body>
+<div class="site">
+
+<header id="header">
+  <nav class="nav">
+    <a class="logo" href="#top">SPIKE'S <span>DINER</span></a>
+    <div class="navlinks">
+      <a href="#story">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit</a>
+      <a class="navcta" href="#menu">See the Menu</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#story">Our Story</a>
+    <a href="#menu">Menu</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#visit">Visit</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=88" alt="Glazed comfort food">
+  </div>
+  <div class="hero-content reveal">
+    <div class="eyebrow">Cajun-American Diner · French Quarter</div>
+    <h1>Big flavor.<br><em>Zero fuss.</em></h1>
+    <p class="hero-copy">Cajun comfort food, old-school diner favorites and enough personality to keep the French Quarter hungry. Come for the chili dogs. Stay for dessert.</p>
+    <div class="actions">
+      <a class="btn primary" href="#menu">See the Menu <span>↗</span></a>
+      <a class="btn secondary" href="tel:+15045550199">Call the Diner</a>
+    </div>
+  </div>
+</section>
+
+<main>
+<section class="section reveal" id="story">
+  <div class="story">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1100&q=88" alt="Cozy neighborhood diner interior" loading="lazy">
+    <div class="panel">
+      <div class="kicker">Our Story</div>
+      <h2>A neighborhood diner with a whole lot of Louisiana.</h2>
+      <p>Spike's is the kind of place where the coffee keeps coming, the jukebox stays loud and the kitchen doesn't believe in small portions.</p>
+      <p>Classic diner comfort meets Cajun heat, served seven days a week in the heart of the Quarter.</p>
+      <div class="signature">Locally loved · Open late · Come hungry</div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="menu">
+  <div class="section-head">
+    <div>
+      <div class="kicker">The good stuff</div>
+      <h2>House favorites.</h2>
+    </div>
+    <p class="lead">A short list of the dishes that keep regulars coming back. Demo content for the CrazyBizSites showcase.</p>
+  </div>
+
+  <div class="menu-grid stagger">
+    <article class="dish"><h3>Spike's Chili Dog</h3><div class="price">$12</div><p>All-beef dog, house chili, mustard, onions and a little Louisiana attitude.</p></article>
+    <article class="dish"><h3>Cajun Chicken Plate</h3><div class="price">$18</div><p>Blackened chicken, dirty rice, greens and a bright pepper sauce.</p></article>
+    <article class="dish"><h3>Big Easy Burger</h3><div class="price">$16</div><p>Smash-seared beef, sharp cheddar, pickles, onion and comeback sauce.</p></article>
+    <article class="dish"><h3>Bananas Foster Pie</h3><div class="price">$9</div><p>Warm banana, brown sugar, cinnamon and vanilla cream.</p></article>
+  </div>
+
+  <div class="badge-row stagger">
+    <div class="badge"><strong>Open late</strong><span>Comfort food after dark.</span></div>
+    <div class="badge"><strong>Made to order</strong><span>Hot, generous and unapologetic.</span></div>
+    <div class="badge"><strong>French Quarter</strong><span>Right where the good nights happen.</span></div>
+  </div>
+</section>
+
+<section class="section reveal" id="signature">
+  <div class="signature-moment">
+    <div>
+      <div class="mascot">🍽️</div>
+      <div class="kicker">The Spike's feeling</div>
+      <h2>Eat well.<br>Stay awhile.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="gallery">
+  <div class="section-head">
+    <div><div class="kicker">Inside Spike's</div><h2>Take a look.</h2></div>
+    <p class="lead">Tap any photo for a full-screen view.</p>
+  </div>
+  <div class="gallery">
+    <figure class="big" data-full="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1800&q=90">
+      <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=88" alt="Diner food" loading="lazy"><figcaption>From the kitchen</figcaption>
+    </figure>
+    <figure data-full="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1800&q=90">
+      <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1000&q=88" alt="Restaurant interior" loading="lazy"><figcaption>Come on in</figcaption>
+    </figure>
+    <figure data-full="https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=1800&q=90">
+      <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=1000&q=88" alt="Comfort food" loading="lazy"><figcaption>House favorites</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="cta reveal" id="visit">
+  <div class="cta-card">
+    <div class="kicker">Tonight's plan</div>
+    <h2>Come hungry.<br>Leave happy.</h2>
+    <p>123 Bourbon Street · New Orleans, LA · Open daily 11am–midnight</p>
+    <div class="actions">
+      <a class="btn primary" href="tel:+15045550199">Call Spike's</a>
+      <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=123+Bourbon+Street+New+Orleans+LA" target="_blank" rel="noopener">Get Directions ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="logo">SPIKE'S <span>DINER</span></div><p>Demo showcase website created for CrazyBizSites. Business details, imagery and reviews should be replaced with verified client information before publication.</p></div>
+    <div><strong>Open daily</strong><br>11am – midnight<br><a href="tel:+15045550199">+1 504 555 0199</a></div>
+  </div>
+</footer>
+
+<div class="sticky-actions">
+  <a href="#menu">MENU</a><a href="tel:+15045550199">CALL</a><a href="#visit">VISIT</a>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button id="closeLightbox" aria-label="Close">×</button>
+  <img id="lightboxImg" alt="">
+</div>
+
+</div>
+
+<script>
+const header=document.getElementById('header');
+const menuBtn=document.getElementById('menuBtn');
+const mobileMenu=document.getElementById('mobileMenu');
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>20),{passive:true});
+
+menuBtn.addEventListener('click',()=>{
+  mobileMenu.classList.toggle('open');
+  menuBtn.textContent=mobileMenu.classList.contains('open')?'×':'☰';
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  mobileMenu.classList.remove('open');menuBtn.textContent='☰';
+}));
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal,.stagger').forEach(el=>observer.observe(el));
+
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightboxImg');
+document.querySelectorAll('.gallery figure').forEach(fig=>fig.addEventListener('click',()=>{
+  lightboxImg.src=fig.dataset.full;
+  lightboxImg.alt=fig.querySelector('img').alt;
+  lightbox.classList.add('open');
+}));
+document.getElementById('closeLightbox').addEventListener('click',()=>lightbox.classList.remove('open'));
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lightbox.classList.remove('open')});
+</script>
+</body>
+</html>
