@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Spike's Diner, a Cajun-American diner in New Orleans' French Quarter, famous for meatloaf and chili dogs.">
+<meta name="theme-color" content="#0e0d0b">
+<title>Spike's Diner | Cajun-American Diner in New Orleans</title>
+<style>
+:root{--bg:#110b09;--panel:#1b1210;--cream:#fff4df;--muted:#c7b7aa;--gold:#f2b544;--red:#d94332;--line:rgba(255,244,223,.14);--max:1160px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--cream);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}img{display:block;width:100%}.wrap{width:min(calc(100% - 36px),var(--max));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(17,11,9,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{font:700 22px Georgia,serif;letter-spacing:.02em}.brand span{color:var(--gold)}.links{display:flex;gap:26px;font-size:14px;color:#ddd4c8}.links a:hover{color:var(--gold)}.navcta{border:1px solid rgba(242,181,68,.65);padding:10px 15px;border-radius:999px;color:#f3c879}.menu-btn{display:none;border:1px solid var(--line);background:transparent;color:var(--cream);border-radius:999px;padding:9px 12px;font-size:18px}
+.mobile-menu{display:none;border-top:1px solid var(--line);background:rgba(17,11,9,.98)}.mobile-menu a{display:block;padding:16px 18px;border-bottom:1px solid var(--line);color:#ddd4c8}
+.hero{min-height:91vh;display:grid;align-items:end;position:relative;overflow:hidden}.hero-media{position:absolute;inset:0;background:#17110d}.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}.hero-slide.active{opacity:1}.hero-slide img{height:100%;object-fit:cover;object-position:center;animation:heroDrift 14s ease-in-out infinite alternate}.hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,9,8,.18),rgba(10,9,8,.30) 38%,#0d0c0a 100%)}
+.hero-content{position:relative;z-index:2;padding:100px 0 82px}.eyebrow,.kicker{color:#ffd16a;text-transform:uppercase;letter-spacing:.17em;font-size:12px;font-weight:900}.eyebrow{display:flex;gap:9px;align-items:center}.dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px rgba(242,181,68,.65)}
+h1,h2,h3{font-family:Georgia,serif;font-weight:500;line-height:1.02}h1{font-size:clamp(52px,11vw,112px);max-width:900px;margin:18px 0 25px;letter-spacing:-.05em}h1 em{color:#ffd16a;font-style:normal}.hero p{max-width:610px;color:#eee0d0;font-size:18px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:999px;font-weight:850;font-size:14px;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}.btn:hover{transform:translateY(-2px)}.brand{font-family:Georgia,serif;text-transform:uppercase}.hero-content{max-width:980px}.card:nth-child(1) .num,.card:nth-child(2) .num,.card:nth-child(3) .num{color:#ff6b4d}.primary{background:var(--gold);color:#1b0d09;box-shadow:0 10px 30px rgba(242,181,68,.13)}.secondary{border:1px solid rgba(247,239,227,.2);background:rgba(0,0,0,.12)}
+section{padding:92px 0}.sectionhead{display:flex;justify-content:space-between;gap:35px;align-items:end;margin-bottom:34px}h2{font-size:clamp(40px,7vw,68px);margin:8px 0;letter-spacing:-.04em}.intro{max-width:480px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,#1a1713,#12110f);border:1px solid var(--line);border-radius:24px;padding:27px;min-height:205px;transition:transform .3s ease,border-color .3s ease}.card:hover{transform:translateY(-5px);border-color:rgba(242,181,68,.35)}.num{color:var(--gold);font-size:13px;font-weight:900}.card h3{font-size:27px;margin:42px 0 8px}.card p{color:var(--muted);margin:0}
+.visual-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}.visual{min-height:520px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#21120e}.visual img{height:100%;object-fit:cover;transition:transform .8s ease}.visual:hover img{transform:scale(1.045)}.story{padding:38px;border-radius:24px;border:1px solid var(--line);background:#1b1210;display:flex;flex-direction:column;justify-content:center}.story p{color:var(--muted);font-size:17px}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:0 35px;border-top:1px solid var(--line)}.dish{padding:21px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px}.dish strong{font:20px Georgia,serif}.dish span{color:#ffd16a;font-weight:900}.dish small{display:block;color:var(--muted);margin-top:3px}
+.gallery{display:grid;grid-template-columns:1.25fr .75fr;grid-template-rows:270px 270px;gap:16px}.gallery .tile{border-radius:24px;overflow:hidden;border:1px solid var(--line);min-height:0}.gallery .wide{grid-row:1/3}.gallery img{height:100%;object-fit:cover;transition:transform .8s ease}.gallery .tile:hover img{transform:scale(1.045)}
+.cta{padding:70px 0;border-top:1px solid var(--line)}.cta-box{border-radius:25px;padding:58px 30px;text-align:center;background:radial-gradient(circle at 50% 0,rgba(242,181,68,.23),transparent 50%),#21120e;border:1px solid var(--line)}.cta-box h2{max-width:760px;margin:10px auto 15px}.cta-box p{color:var(--muted);max-width:560px;margin:auto}
+footer{padding:35px 0 45px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.demo-note{font-size:11px;opacity:.65}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@keyframes heroDrift{from{transform:scale(1.03)}to{transform:scale(1.08) translate3d(-8px,-5px,0)}}
+@media(max-width:760px){.links,.navcta{display:none}.menu-btn{display:block}.mobile-menu.open{display:block}.hero{min-height:86vh}.hero-content{padding:78px 0 58px}.hero p{font-size:16px}.sectionhead,.visual-grid{display:block}.sectionhead .intro{margin-top:15px}.cards{grid-template-columns:1fr}.card{min-height:155px}.card h3{margin-top:28px}.visual{min-height:330px;margin-bottom:16px}.story{padding:28px}.menu{grid-template-columns:1fr}.gallery{display:block}.gallery .tile{height:280px;margin-bottom:16px}.gallery .wide{height:340px}section{padding:72px 0}.cta-box{padding:46px 20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-slide img,.reveal{animation:none;transition:none}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header><nav class="wrap">
+<a class="brand" href="#top">SPIKE'S <span>DINER</span></a>
+<div class="links"><a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#gallery">Gallery</a><a href="#visit">Find Us</a></div>
+<a class="navcta" href="#visit">Order Now</a><button class="menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+</nav><div class="mobile-menu"><a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#gallery">Gallery</a><a href="#visit">Find Us</a></div></header>
+
+<main id="top">
+<section class="hero">
+<div class="hero-media" aria-hidden="true">
+<div class="hero-slide active"><img src="https://images.unsplash.com/photo-1726699658779-7d4874855177?auto=format&fit=crop&w=2200&q=85" alt="Chili dog and fries on a diner plate"></div>
+<div class="hero-slide"><img src="https://images.unsplash.com/photo-1705945021699-7374c3fd34cb?auto=format&fit=crop&w=2200&q=85" alt="Classic meatloaf prepared for a diner meal"></div>
+<div class="hero-slide"><img src="https://images.unsplash.com/photo-1767468200546-244b9c52a307?auto=format&fit=crop&w=2200&q=85" alt="People dining at night in New Orleans"></div>
+</div>
+<div class="wrap hero-content reveal"><div class="eyebrow"><span class="dot"></span> Cajun-American Diner · French Quarter</div><h1>Big flavor.<br><em>Zero fuss.</em></h1><p>Cajun comfort food, old-school diner favorites and enough personality to keep the French Quarter hungry. Come for the chili dogs. Stay for dessert.</p><div class="actions"><a class="btn primary" href="#menu">See the Menu</a><a class="btn secondary" href="tel:+15550123456">Call the Diner</a></div></div>
+</section>
+
+<section><div class="wrap"><div class="sectionhead reveal"><div><div class="kicker">What we do</div><h2>Big plates.<br>Big New Orleans energy.</h2></div><p class="intro">Three Spike staples, built for hungry locals, curious tourists and families chasing a great meal.</p></div><div class="cards">
+<article class="card reveal"><div class="num">01 / Signature</div><h3>Cajun Chili Dogs</h3><p>Griddled dogs, spicy Cajun chili and all the fixings. Messy in the best possible way.</p></article>
+<article class="card reveal"><div class="num">02 / Comfort</div><h3>Famous Meatloaf</h3><p>Thick-cut, slow-baked comfort food with gravy, mashed potatoes and zero apologies.</p></article>
+<article class="card reveal"><div class="num">03 / Sweet</div><h3>Fabulous Sundaes</h3><p>Big scoops, whipped cream, cherries and colorful shakes for kids and grown-ups alike.</p></article>
+</div></div></section>
+
+<section id="story"><div class="wrap visual-grid"><div class="visual reveal"><img src="https://images.unsplash.com/photo-1776287929676-1f8952d05100?auto=format&fit=crop&w=1500&q=85" alt="New Orleans diners enjoying an evening out" loading="lazy"></div><div class="story reveal"><div class="kicker">Our story</div><h2>A neighborhood diner with a whole lot of Louisiana soul.</h2><p>Spike's Diner is a fictional preview brand created for the CrazyBizSites test. The real client version would use the owner's actual story, neighborhood and personality.</p><div class="actions"><a class="btn secondary" href="#visit">Meet Spike</a></div></div></div></section>
+
+<section id="menu"><div class="wrap"><div class="sectionhead reveal"><div><div class="kicker">Spike's favorites</div><h2>Come hungry.</h2></div><p class="intro">A short hit list of the food that makes Spike's worth finding in the French Quarter.</p></div><div class="menu">
+<div class="dish reveal"><div><strong>Cajun Chili Dog</strong><small>Cajun chili, onions, mustard, shredded cheese</small></div><span>$12</span></div>
+<div class="dish reveal"><div><strong>Spike's Meatloaf</strong><small>Brown gravy, mashed potatoes, green beans</small></div><span>$15</span></div>
+<div class="dish reveal"><div><strong>Gator on a Stick</strong><small>Cajun seasoning, grilled and served hot</small></div><span>$15</span></div>
+<div class="dish reveal"><div><strong>Big Easy Sundae</strong><small>Vanilla ice cream, fudge, whipped cream, cherry</small></div><span>$9</span></div>
+</div></div></section>
+
+<section id="gallery"><div class="wrap"><div class="sectionhead reveal"><div><div class="kicker">Spike's after dark</div><h2>Come hungry.<br>Leave smiling.</h2></div><p class="intro">A little diner nostalgia, a little New Orleans energy and plenty of food worth photographing.</p></div><div class="gallery">
+<div class="tile wide reveal"><img src="https://images.unsplash.com/photo-1762118301018-ff32f6568de2?auto=format&fit=crop&w=1500&q=85" alt="Spike's chili dog and fries" loading="lazy"></div>
+<div class="tile reveal"><img src="https://images.unsplash.com/photo-1776287929676-1f8952d05100?auto=format&fit=crop&w=1100&q=85" alt="New Orleans diner atmosphere at night" loading="lazy"></div>
+<div class="tile reveal"><img src="https://images.unsplash.com/photo-1705945021699-7374c3fd34cb?auto=format&fit=crop&w=1100&q=85" alt="Spike's famous meatloaf" loading="lazy"></div>
+</div></div></section>
+
+<section class="cta" id="visit"><div class="wrap cta-box reveal"><div class="kicker">French Quarter, here we come</div><h2>Get messy. Get happy. Get Spike's.</h2><p>French Quarter · New Orleans, Louisiana · Open daily · 11 AM–midnight</p><div class="actions" style="justify-content:center"><a class="btn primary" href="tel:+15550123456">Call +1 (555) 012-3456</a><a class="btn secondary" href="https://wa.me/15550123456">Text the Diner</a></div></div></section>
+</main>
+<footer><div class="wrap foot"><span>© 2026 Spike's Diner · Fictional preview by CrazyBizSites</span><span>Cajun flavor · Diner soul · French Quarter energy</span></div></footer>
+<script>
+const items=document.querySelectorAll('.reveal');const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});items.forEach(x=>io.observe(x));
+const slides=[...document.querySelectorAll('.hero-slide')];let current=0;setInterval(()=>{slides[current].classList.remove('active');current=(current+1)%slides.length;slides[current].classList.add('active')},6500);
+const menuBtn=document.querySelector('.menu-btn'),mobileMenu=document.querySelector('.mobile-menu');menuBtn.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open)});mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}));
+</script>
+</body></html>
